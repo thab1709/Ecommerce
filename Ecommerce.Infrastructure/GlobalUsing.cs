@@ -1,0 +1,10 @@
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Configuration;
+global using Ecommerce.Domain.Entities;
+global using Ecommerce.Domain.Interfaces;
+global using System.Reflection;
+global using Ecommerce.Infrastructure.Data;
+global using FluentValidation;
+global using Microsoft.Extensions.Options;

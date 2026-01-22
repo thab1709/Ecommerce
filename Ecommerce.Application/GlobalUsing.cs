@@ -1,0 +1,15 @@
+global using System;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using MediatR;
+global using FluentValidation;
+global using Ecommerce.Domain.Entities;
+global using Ecommerce.Domain.Interfaces;
+global using Ecommerce.Domain.Exceptions;
+global using Microsoft.Extensions.DependencyInjection;
+global using Ecommerce.Domain.Enums;
+global using System.Reflection;
+global using Microsoft.EntityFrameworkCore;
+global using AutoMapper;
+global using Npgsql;
+global using ClosedXML;
