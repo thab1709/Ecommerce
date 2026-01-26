@@ -3,6 +3,7 @@ using System;
 using Ecommerce.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260124031557_AddPromotionsTable")]
+    partial class AddPromotionsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,20 +119,11 @@ namespace Ecommerce.Infrastructure.Data.Migrations
                     b.Property<decimal>("Discount")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal>("DiscountValue")
-                        .HasColumnType("numeric");
-
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal?>("MaxDiscountAmount")
-                        .HasColumnType("numeric");
-
                     b.Property<decimal>("MinOrderAmount")
                         .HasColumnType("numeric");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
 
                     b.Property<int>("UsageLimit")
                         .HasColumnType("integer");

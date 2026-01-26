@@ -8,7 +8,7 @@ public class AppDbContext : DbContext
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<Customer> Customers =>Set<Customer>();
     public DbSet<Auditlog> auditlogs {get; set;}
-
+    public DbSet<Promotion> Promotions { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

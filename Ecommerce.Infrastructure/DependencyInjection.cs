@@ -7,7 +7,7 @@ public static class DependencyInjection
         var connectionString =  configuration.GetConnectionString("PostgresConnection");
         services.AddDbContext<AppDbContext>(options => 
         options.UseNpgsql(connectionString));
-
+       services.AddScoped<IPromotionRepository, PromotionRepository>();
        services.AddScoped<IOrderRepository, OrderRepository>();
        services.AddScoped<ICustomerRepository, CustomerRepository>();
        services.AddMediatR(cfg =>
