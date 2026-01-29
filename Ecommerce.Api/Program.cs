@@ -1,4 +1,7 @@
 
+
+using Swashbuckle.AspNetCore.SwaggerGen;
+
 Log.Logger = new LoggerConfiguration()
    .MinimumLevel.Information()
    .Enrich.FromLogContext()
@@ -7,6 +10,27 @@ Log.Logger = new LoggerConfiguration()
    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddMvc();
+builder.Services.AddHttpContextAccessor();
+DevExpress.Xpo.DB.PostgreSqlConnectionProvider.Register();
+
+builder.Services.AddDevExpressControls();
+builder.Services.ConfigureReportingServices(configurator =>
+{
+    configurator.ConfigureReportDesigner(designerConfigurator =>
+    {
+        designerConfigurator.RegisterDataSourceWizardConfigFileConnectionStringsProvider();
+
+    });
+
+  configurator.ConfigureWebDocumentViewer(viewerConfigurator => {
+        viewerConfigurator.UseCachedReportSourceBuilder();
+    });
+});
+
+
+
+
 builder.Host.UseSerilog();
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -80,6 +104,11 @@ builder.Services.AddSwaggerGen(options =>  {options.AddSecurityDefinition("Beare
         new string[] {} 
    }
     });
+    options.DocInclusionPredicate((docName, apiDesc) => {
+        if (!apiDesc.TryGetMethodInfo(out var methodInfo)) return false;
+        // Bỏ qua các Controller thuộc namespace DevExpress
+        return !methodInfo.DeclaringType.FullName.StartsWith("DevExpress");
+    });
    });
 
 
@@ -93,7 +122,7 @@ app.UseSwaggerUI();
 app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseDevExpressControls();
 app.MapCarter(); 
-
+app.MapControllers();
 app.Run();

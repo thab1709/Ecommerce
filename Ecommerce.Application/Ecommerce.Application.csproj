@@ -10,6 +10,8 @@
     <PackageReference Include="AutoMapper" Version="16.0.0" />
     <PackageReference Include="ClosedXML" Version="0.105.0" />
     <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="25.2.3" />
+    <PackageReference Include="DevExpress.Reporting.Core" Version="25.2.3" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageReference Include="MediatR" Version="14.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.2" />

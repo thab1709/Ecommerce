@@ -13,3 +13,4 @@ global using Microsoft.EntityFrameworkCore;
 global using AutoMapper;
 global using Npgsql;
 global using ClosedXML;
+global using Ecommerce.Application.DTOs;

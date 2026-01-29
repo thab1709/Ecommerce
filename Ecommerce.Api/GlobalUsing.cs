@@ -27,3 +27,7 @@ global using System.Text.Json.Serialization;
 global using Ecommerce.Domain.Enums;
 global using AutoMapper;
 global using System.Reflection;
+global using DevExpress.AspNetCore;
+global using DevExpress.AspNetCore.Reporting;
+global using DevExpress.XtraReports.Web.Extensions;
+global using DevExpress.Xpo.DB;

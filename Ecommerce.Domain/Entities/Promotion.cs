@@ -15,6 +15,7 @@ public class Promotion
     public bool IsValid(decimal orderAmount)
     {
         return ExpiryDate >= DateTime.UtcNow && UsedCount < UsageLimit && orderAmount >= MinOrderAmount;
+      
 
 
     }
@@ -38,7 +39,10 @@ public class Promotion
         UsedCount  = 0;
  
     }
- private Promotion() { } 
+ private Promotion()
+    {
+      
+    } 
 
  public decimal CalculatorDicount(decimal orderAmount)
     {

@@ -94,4 +94,28 @@ public void CalculateDiscount_WhenDiscountHigherThanOrderAmount_ShouldReturnOrde
     
     actualDiscount.Should().Be(80000);
 }
+[Fact]
+public void IsValid_UsageLimit()
+{
+       var promo = new Promotion("HẾT_LƯỢT", PromotiontType.FixedAmount,5000000, null,0,0,DateTime.UtcNow.AddDays(1),5);
+       for(int i = 0;i < 5;i++) promo.use();
+       var IsValid = promo.IsValid(10000000);
+       IsValid.Should().BeFalse("Mã đã dùng hết 5/5 lượt thì không được hợp lệ nữa");   
+
+}
+[Fact]
+public void Isvalid_Expired()
+    {
+        var promo = new Promotion("HẾT_HẠN", PromotiontType.FixedAmount,5000000, null,0,0,DateTime.UtcNow.AddDays(-1),5);
+       var isValid = promo.IsValid(100000);
+       isValid.Should().BeFalse("Mã Đã hét hạn");
+
+    }
+    [Fact]
+    public void IsValid_MinAmount()
+    {
+        var promo = new Promotion("VIP500", PromotiontType.FixedAmount, 100000, null, 1000000, 900000, DateTime.UtcNow.AddDays(1), 10);
+        var isValid = promo.IsValid(790000);
+        isValid.Should().BeFalse("Đơn hàng chưa đủ điều kiện");
+    }
 }

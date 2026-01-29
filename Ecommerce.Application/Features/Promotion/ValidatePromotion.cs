@@ -27,7 +27,7 @@ public class ValidatePromotionHandler : IRequestHandler< ValidatePromotion, Vali
             string reason = "Mã ko đủ điền kiện sử dụng";
             if(promo.ExpiryDate < DateTime.UtcNow) reason = "Mã đã hết hạn sử dụng";
             if(promo.UsedCount >= promo.UsageLimit) reason = "Mã đã hết lượt sử dụng";
-            if(request.TotalAmount < promo.MinOrderAmount) reason = $"Đơn hàng phải tối thiểu trên  {promo.MinOrderAmount:O}đ ";
+            if(request.TotalAmount < promo.MinOrderAmount) reason = $"Đơn hàng phải tối thiểu trên  {promo.MinOrderAmount:NO}đ ";
              return new ValidateResponse(false,0,request.TotalAmount, reason);
 
         }
