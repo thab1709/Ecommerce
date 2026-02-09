@@ -25,6 +25,7 @@ global using Ecommerce.Application;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Text.Json.Serialization;
 global using Ecommerce.Domain.Enums;
+global using Ecommerce.Domain.Entities;
 global using AutoMapper;
 global using System.Reflection;
 global using DevExpress.AspNetCore;

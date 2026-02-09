@@ -13,7 +13,8 @@ public static class DependencyInjection
        services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        
+        services.AddScoped<IPhieuThuService, PhieuThuService>();
+        services.AddScoped<IHocSinhService, HocSinhService>();
       return services;
 }
 }

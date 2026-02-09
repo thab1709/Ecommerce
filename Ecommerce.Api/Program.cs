@@ -1,5 +1,7 @@
 
-
+using DevExpress.Xpo;
+using Ecommerce.Domain.Interfaces;
+using Ecommerce.Infrastructure.Data;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 Log.Logger = new LoggerConfiguration()
@@ -10,9 +12,15 @@ Log.Logger = new LoggerConfiguration()
    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IPhieuThuService, PhieuThuService>();
 builder.Services.AddMvc();
 builder.Services.AddHttpContextAccessor();
 DevExpress.Xpo.DB.PostgreSqlConnectionProvider.Register();
+XpoDefault.DataLayer = XpoDefault.GetDataLayer(
+    builder.Configuration.GetConnectionString("XpoPostgresConnection"),
+    AutoCreateOption.SchemaAlreadyExists
+);
+
 
 builder.Services.AddDevExpressControls();
 builder.Services.ConfigureReportingServices(configurator =>
@@ -106,7 +114,7 @@ builder.Services.AddSwaggerGen(options =>  {options.AddSecurityDefinition("Beare
     });
     options.DocInclusionPredicate((docName, apiDesc) => {
         if (!apiDesc.TryGetMethodInfo(out var methodInfo)) return false;
-        // Bỏ qua các Controller thuộc namespace DevExpress
+     
         return !methodInfo.DeclaringType.FullName.StartsWith("DevExpress");
     });
    });

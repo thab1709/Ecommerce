@@ -8,3 +8,6 @@ global using System.Reflection;
 global using Ecommerce.Infrastructure.Data;
 global using FluentValidation;
 global using Microsoft.Extensions.Options;
+global  using DevExpress.Xpo.DB;
+global using System;
+global using ClosedXML.Excel;
